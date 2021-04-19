@@ -41,6 +41,11 @@ namespace DataAccess.Concrete.InMemory
             return _products;
         }
 
+        public List<Product> GetAllByCategory(int categoryId)
+        {
+            return _products.Where(p => p.CategoryID == categoryId).ToList();
+        }
+
         public void Update(Product product)
         {
             //Gönderdiğim ürün id'sine sahip olan listedeki ürünü bul
