@@ -20,7 +20,7 @@ namespace DataAccess.Concrete.InMemory
                 new Product{ProductID=2, CategoryID=1,ProductName="Kamera",UnitPrice=1200,UnitsInStock=23},
                 new Product{ProductID=3, CategoryID=2,ProductName="Telefon",UnitPrice=3233,UnitsInStock=321},
                 new Product{ProductID=4, CategoryID=2,ProductName="Klavye",UnitPrice=443,UnitsInStock=54},
-                new Product{ProductID=5, CategoryID=2,ProductName="Fare",UnitPrice=43,UnitsInStock=543},
+                new Product{ProductID=5, CategoryID=2,ProductName="Fare",UnitPrice=43,UnitsInStock=543}
 
             };
         }
