@@ -1,0 +1,26 @@
+--Kütüphaneler
+
+-DataAccess
+EntityFrameworkCore.SqlServer
+
+
+--ADIMLAR
+
+
+Katmanlarý aç
+Classlarý belirle
+Katmanlara Abstract ve Concrete klasörlerini aç
+
+DataAcces
+Abstract classlarý aç 
+IEntityRepository interfacei miras vermeli (Generic Repository pattern uygula)
+
+Concrete classlarý aç
+EntityFramework
+Entities classlarýný implement et
+Context classýný yaz/veritabaný baðlantýsýný yaz
+Entities classlarýnda implement edilen metodlarý doldur
+
+Business
+Abstract metod ekle
+Concrete classta metodlarý düzenle
