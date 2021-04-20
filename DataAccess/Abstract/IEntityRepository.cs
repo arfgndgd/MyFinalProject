@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataAccess.Abstract
+{
+    //Generic Repository Design Pattern
+    public interface IEntityRepository<T>
+    {
+        //Tüm ilgili verilerin listesi (filtre yok ise tüm datayı getirir "filter = null")
+        List<T> GetAll(Expression<Func<T,bool>>filter = null);
+
+        //Tek bir veri için
+        T Get(Expression<Func<T,bool>> filter);
+
+        void Add(T entity);
+
+        void Update(T entity);
+
+        void Delete(T entity);
+
+    }
+}

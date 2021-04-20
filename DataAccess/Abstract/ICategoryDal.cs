@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace DataAccess.Abstract
 {
     //Generic Repository Design Pattern
-    public interface IProductDal:IEntityRepository<Product>
+    public interface ICategoryDal:IEntityRepository<Category>
     {
         
     }
