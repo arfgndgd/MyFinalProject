@@ -34,3 +34,15 @@ EfEntityRepositoryBase classýný EntityFramework klasörüne ekledik
 
 DataAccess
 Concrete classlara Core projesinden EfEntityRepositoryBase mirasý veriyoruz. <hangi class için, hangi veritabanýna göre>, abstractý kim
+
+Entities
+DTOs klasörü açtýk burada T-Sql join gibi operasyonlar için 
+Ýlgili entityler göre dto classlarý açýyoruz
+Çýplak class kalmamasý için Dto classlarýna miras verebilecek Core projesi içinde bir interface IDto classý açtýk.
+
+DataAccess
+IProductDal içerisine DTO classýmýza özel entity classýn detaylarýný getirecek bir List<ProductDetailDto> GetProductDetails(); metodu yazdýk 
+EfProductDal içerisinde ise implement ettik
+
+Business
+IProductService içine de ayný methodu yazdýk, Manager classýnda implement ettik
