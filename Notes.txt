@@ -1,6 +1,7 @@
 --Kütüphaneler
 
 -DataAccess
+-Core(.net core ile ilgisi yok)
 EntityFrameworkCore.SqlServer
 
 
@@ -28,4 +29,8 @@ Concrete classta metodlarý düzenle
 Core **bu katman referans almaz
 (tüm projelerde kullanabileceðimiz bir alt yapý) (.net core ile bir ilgisi yok)
 IEntityRepository klasörünü buraya taþýdýk (bu katman ilk baþta açýlsa daha iyi)
+EfEntityRepositoryBase classýný EntityFramework klasörüne ekledik
+	Bu class için DataAccess içinde Concrete classlarýmýzdaki metodlarý ortak bir çatýda topladýk
 
+DataAccess
+Concrete classlara Core projesinden EfEntityRepositoryBase mirasý veriyoruz. <hangi class için, hangi veritabanýna göre>, abstractý kim
