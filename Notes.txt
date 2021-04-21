@@ -24,3 +24,8 @@ Entities classlarýnda implement edilen metodlarý doldur
 Business
 Abstract metod ekle
 Concrete classta metodlarý düzenle
+
+Core **bu katman referans almaz
+(tüm projelerde kullanabileceðimiz bir alt yapý) (.net core ile bir ilgisi yok)
+IEntityRepository klasörünü buraya taþýdýk (bu katman ilk baþta açýlsa daha iyi)
+
