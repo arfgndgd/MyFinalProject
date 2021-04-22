@@ -50,3 +50,14 @@ EfProductDal içerisinde ise implement ettik
 
 Business
 IProductService içine de ayný methodu yazdýk, Manager classýnda implement ettik
+
+Core
+Utilities klasörü aç
+Results klasörü aç(iþlem sonuçlarý için mesaj, baþarýlý gibi geri bildirimler...)
+IResult interfacei açtýk (success, message..) get; readOnly metodlarý yazdýk
+Result classý açtýk miras alýp implement ettik. get; readOnly
+
+Business
+IResult kullandýðýmýz için Service classýnda voidli metodu IResult'a çevirdik
+Manager classýnda metodu düzenliyoruz çünkü geriye deðer döndürmesi gerekir. 
+Alýnan hata için de Result classýna mesaj için constructor eklememiz gerekir.
