@@ -27,12 +27,16 @@ Abstract metod ekle
 Concrete classta metodlarý düzenle
 
 Core **bu katman referans almaz
-(tüm projelerde kullanabileceðimiz bir alt yapý) (.net core ile bir ilgisi yok)
-IEntityRepository klasörünü buraya taþýdýk (bu katman ilk baþta açýlsa daha iyi)
+(tüm projelerde kullanabileceðimiz bir alt yapý) (.net core ile bir ilgisi yok) (bu katman ilk baþta açýlsa daha iyi)
+DataAccess klasörü aç / IEntityRepository classýný buraya taþýdýk 
+Entities klasörü aç / IEntity classýný buraya taþýdýk 
+(namespaceleri düzenle, Entities katmanýndaki usingleri de düzenle)
 EfEntityRepositoryBase classýný EntityFramework klasörüne ekledik
 	Bu class için DataAccess içinde Concrete classlarýmýzdaki metodlarý ortak bir çatýda topladýk
 
 DataAccess
+Core'dan referans alýyoruz
+Abstract classlarýn usingleri düzenlenmeli
 Concrete classlara Core projesinden EfEntityRepositoryBase mirasý veriyoruz. <hangi class için, hangi veritabanýna göre>, abstractý kim
 
 Entities
