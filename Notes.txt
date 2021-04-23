@@ -84,5 +84,5 @@ Alýnan hata için de DataResult classýna mesaj için constructor eklememiz gerekir
 Result classýndan miras alacak SuccessDataResult ve ErrorDataResult classlarýný aç
 
 Business
-Implementleri düzenle
+DataResult için implementleri düzenle
 Manager classýndaki methodlara Mesaj classýný ekle

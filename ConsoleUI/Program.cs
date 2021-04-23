@@ -11,8 +11,8 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            ProductPriceTest();
-            CategoryTest();
+            //ProductPriceTest();
+            //CategoryTest();
             ProductTest();
         }
 
@@ -29,7 +29,7 @@ namespace ConsoleUI
         {
             //Burada parantez içinde new InMemory'i artık EntityFramework kullandığımız için değiştirirek tüm teknolojiyi değiştirmiş olduk.
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (var product in productManager.GetByUnitPrice(4,10))
+            foreach (var product in productManager.GetByUnitPrice(40,1000).Data)
             {
                 Console.WriteLine(product.ProductName + "/" + product.UnitPrice);
             }
@@ -38,10 +38,21 @@ namespace ConsoleUI
         private static void ProductTest()
         {
             ProductManager productManager = new ProductManager(new EfProductDal());
-            foreach (var product in productManager.GetProductDetails())
+
+            var result = productManager.GetProductDetails();
+            if (result.Success ==true)
             {
-                Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+                foreach (var product in result.Data)
+                {
+                    Console.WriteLine(product.ProductName + "/" + product.CategoryName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
+            
         }
     }
 }
