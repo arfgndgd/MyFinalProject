@@ -8,6 +8,7 @@ namespace Core.Utilities.Results
 {
     public class Result : IResult
     {
+        //iki constructor olmasının nedeni sadece başarılı işlem ya da başarılı işlem sonucu mesajda istenebiliceği için
         public Result(bool success, string message):this(success)
         {
             Message = message;
