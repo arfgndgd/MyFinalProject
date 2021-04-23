@@ -58,6 +58,24 @@ IResult interfacei açtýk (success, message..) get; readOnly metodlarý yazdýk
 Result classý açtýk miras alýp implement ettik. get; readOnly
 
 Business
-IResult kullandýðýmýz için Service classýnda voidli metodu IResult'a çevirdik
+IResult kullandýðýmýz için Service classýnda "voidli metodu" IResult'a çevirdik
 Manager classýnda metodu düzenliyoruz çünkü geriye deðer döndürmesi gerekir. 
 Alýnan hata için de Result classýna mesaj için constructor eklememiz gerekir.
+Aþaðýdaki satýrdaki Result classlarýna göre de metodu düzenle
+
+Core
+Alýnan hata için de Result classýna mesaj için constructor eklememiz gerekir.
+Result classýndan miras alacak SuccessResult ve ErrorResult classlarýný aç
+
+Business
+Constant(sabitler) klasörü aç (mesajlar,enumlar vs gibi sabitler)
+Messages classý aç (static; class, method)
+Manager classýndaki methodlara Mesaj classýný ekle
+
+Service classýnda void olmayan metodlar için List<class> 'dan önce Core\Results klasörüne açtýðýmýz IDataResult interfaceini ekleyerek hem mesaj hem deðer döndüreceðiz(IResult'tan miras almalý)
+
+Core 
+IDataResult içinde geriye deðer döndüren bi yapý kurmak için <T> generic yapý kullanacaðýz
+DataResult classý açýp implement edip constructor yazýyoruz
+	**Result classý void metodlar için success ve mesaj döndürür
+	**DataResult classý success,message ve data döndürür
