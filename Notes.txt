@@ -86,3 +86,10 @@ Result classýndan miras alacak SuccessDataResult ve ErrorDataResult classlarýný 
 Business
 DataResult için implementleri düzenle
 Manager classýndaki methodlara Mesaj classýný ekle
+
+Api 
+New Project/asp.net core web api
+Controller ekle/ProductsController (Apide controller çoðul olarak isimlendirilir)
+Action ekle
+
+IoC Container için=>Startup.cs içinde ConfigureServices/services.AddSingleton<Service,Manager>();
