@@ -27,8 +27,8 @@ namespace WebAPI.Controllers
             _productService = productService;
         }
 
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet("GetAll")]
+        public IActionResult GetAll()
         {
             //Dependency chain
             
@@ -40,8 +40,19 @@ namespace WebAPI.Controllers
             return BadRequest(result);
         }
 
-        [HttpPost]
-        public IActionResult Post(Product product)
+        [HttpGet("GetById")]
+        public IActionResult GetById(int id)
+        {
+            var result = _productService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost("Add")]
+        public IActionResult Add(Product product)
         {
             var result = _productService.Add(product);
             if (result.Success)
