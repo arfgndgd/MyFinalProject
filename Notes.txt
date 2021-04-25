@@ -92,4 +92,6 @@ New Project/asp.net core web api
 Controller ekle/ProductsController (Apide controller çoðul olarak isimlendirilir)
 Action ekle
 
-IoC Container için=>Startup.cs içinde ConfigureServices/services.AddSingleton<Service,Manager>();
+IoC Container yapýsýný kur (projemizde new edilen yapý yok configuresion olmalý)
+	 Startup.cs içinde ConfigureServices/services.AddSingleton<IProductService,ProductManager>();
+										 services.AddSingleton<IProductDal,EfProductDal>()

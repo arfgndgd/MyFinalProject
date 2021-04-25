@@ -18,6 +18,8 @@ namespace WebAPI.Controllers
         //loosely coupled/gevşek bağımlılık
         //naming convention/isimlendirme standartı
         //IoC Container/-Inversion of Control /bellekte referanslar tutar kimin ihtiyacı varsa ona verir kısaca konfigurasyonu sağlar
+
+        //Projede hiçbir yapıyı new etmiyoruz. IProductService istediğimizde proje bize ProductManager vermeli. Bunu sağlayan ise Startup/ConfigureServices/services.AddSingleton<Service,Manager>();
         IProductService _productService;
 
         public ProductsController(IProductService productService)
@@ -26,12 +28,27 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public List<Product> Get()
+        public IActionResult Get()
         {
             //Dependency chain
             
             var result = _productService.GetAll();
-            return result.Data;
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpPost]
+        public IActionResult Post(Product product)
+        {
+            var result = _productService.Add(product);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
         }
     }
 }
