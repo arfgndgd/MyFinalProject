@@ -102,3 +102,9 @@ DependencyResolvers klasörü aç
 Autofac klasörü aç
 AutofacBusinessModule classý aç
 : Module (using Autofac)
+
+WebApi
+Startup.cs içinde AddSingleton'larý yorum satýra aldýk. 
+Program.cs içinde CreateHostBuilder metoduna .UseServiceProviderFactory(new AutofacServiceProviderFactory()) ekle
+(IoC yapýsý yerine Autofac kullan diyoruz)
+											 .ConfigureContainer<ContainerBuilder> (yazdýðýmýz modülü ekliyoruz)			

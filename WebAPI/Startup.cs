@@ -34,9 +34,13 @@ namespace WebAPI
             //AOP (Aspect Oriented Programming)
             services.AddControllers();
 
+            #region Autofac'siz
             //Bu iþlemi Autofac ile yapabiliriz. Business/DependencyResolvers/Autofac
-            services.AddSingleton<IProductService,ProductManager>();//Projede hiçbir yapýyý new etmiyoruz.IProductService istediðimizde proje bize ProductManager vermeli
-            services.AddSingleton<IProductDal, EfProductDal>();//IproductDal istediðimizde EfProductDal vermeli
+            //services.AddSingleton<IProductService, ProductManager>();
+            //Projede hiçbir yapýyý new etmiyoruz.IProductService istediðimizde proje bize ProductManager vermeli
+            //services.AddSingleton<IProductDal, EfProductDal>();
+            //IproductDal istediðimizde EfProductDal vermeli 
+            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
