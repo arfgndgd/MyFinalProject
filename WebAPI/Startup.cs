@@ -33,6 +33,8 @@ namespace WebAPI
             //IoC Container iþlemini otomatik yapan yapýlar var; Autofac, Ninject,CastleWindsor, StructureMap, LightInject, DryInject
             //AOP (Aspect Oriented Programming)
             services.AddControllers();
+
+            //Bu iþlemi Autofac ile yapabiliriz. Business/DependencyResolvers/Autofac
             services.AddSingleton<IProductService,ProductManager>();//Projede hiçbir yapýyý new etmiyoruz.IProductService istediðimizde proje bize ProductManager vermeli
             services.AddSingleton<IProductDal, EfProductDal>();//IproductDal istediðimizde EfProductDal vermeli
         }

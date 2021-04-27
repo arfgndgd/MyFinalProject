@@ -95,3 +95,10 @@ Action ekle
 IoC Container yapýsýný kur (projemizde new edilen yapý yok configuresion olmalý)
 	 Startup.cs içinde ConfigureServices/services.AddSingleton<IProductService,ProductManager>();
 										 services.AddSingleton<IProductDal,EfProductDal>()
+
+Business
+Autofac-Autofac.Extras.DynamicProxy
+DependencyResolvers klasörü aç
+Autofac klasörü aç
+AutofacBusinessModule classý aç
+: Module (using Autofac)
