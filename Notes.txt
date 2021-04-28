@@ -108,3 +108,13 @@ Startup.cs içinde AddSingleton'larý yorum satýra aldýk.
 Program.cs içinde CreateHostBuilder metoduna .UseServiceProviderFactory(new AutofacServiceProviderFactory()) ekle
 (IoC yapýsý yerine Autofac kullan diyoruz)
 											 .ConfigureContainer<ContainerBuilder> (yazdýðýmýz modülü ekliyoruz)			
+
+	****Autofac'ten vazgeçmek istediðimizde yeni yapýmýzý DependencyResolvers içine kurup Program.cs'te yeni yapýlarýmýzý new'lesek yeterli olacaktýr.
+	
+
+Business (FluentValidation/Manage NuGet)
+Validation/doðrulama ekleyeceðiz  
+ValidationRules/FluentValidation files/ProductValidator class
+Validationlarýmýzý buraya constructor içine yazacaðýz / productManager içinde ise add metodunda karþýlýyoruz
+
+***1.42***
