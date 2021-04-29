@@ -13,12 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI", "ConsoleUI\Cons
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{54F17D9B-CC91-4BBB-8829-814D411229BB}"
 	ProjectSection(SolutionItems) = preProject
+		ImportantNotes.txt = ImportantNotes.txt
 		Notes.txt = Notes.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{822590F1-BDC4-4EC5-835A-A3102BE10F00}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csproj", "{0A9C717E-059E-4E6B-99C6-B13F8DA1F933}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAPI", "WebAPI\WebAPI.csproj", "{0A9C717E-059E-4E6B-99C6-B13F8DA1F933}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

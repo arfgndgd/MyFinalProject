@@ -117,4 +117,6 @@ Validation/doðrulama ekleyeceðiz
 ValidationRules/FluentValidation files/ProductValidator class
 Validationlarýmýzý buraya constructor içine yazacaðýz / productManager içinde ise add metodunda karþýlýyoruz
 
-***1.42***
+Core
+CrossCuttingConcerns/Validation/ValidationTool class
+ProductManager/ Add metodundan validationý al yukarýdaki classa ekle
