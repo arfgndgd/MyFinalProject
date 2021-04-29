@@ -1,0 +1,11 @@
+
+AOP -Aspect Oriented Programming
+
+Uygulamamýz çalýþýrken baþýnda sonunda neresinde hata verirse çalýþmasýný istediðimiz kodlarýmýz ile aop yöntemi ile çalýþýr. Bu yönteme interception denir. Aslýnda yaptýðýmýz try catch bloklarýný yazmak zorunda kalmayacaðýmýz bir teknolojidir.
+
+
+
+Core
+Utilities/Interceptions/Class(EnginDemirog github'tan MethodInterceptionBaseAttribute.cs)
+
+**Burada yazdýðýmýz classlar sayesinde projemizin çalýþma þekli deðiþecek. Yani bizim tüm metodlarýmýzýn çalýþmasýndan önce bu classlardaki metodlar çalýþacak, önceliði belirlenecek, durumlarýna göre try catch yapýlarýna girecek.

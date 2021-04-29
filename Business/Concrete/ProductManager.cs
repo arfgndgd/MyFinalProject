@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
@@ -25,12 +26,14 @@ namespace Business.Concrete
             _productDal = productDal;
         }
 
+        [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
-            //business code
-            //validation/doğrulama
+            //Buradaki tüm validation kodlarını önce Business'ta ValidationRules olarak belirleyip Core'da Utilities/Interceptions - CrossCuttingConcerns/Validation - Aspect/Autofac/Validation içlerindeki classlar ile bu klasörleri birbirine bağladık. 
+            //Yapmamız gereken tek şey ise methodun üstüne [ValidationAspect] yazmak oldu
 
-            ValidationTool.Validate(new ProductValidator(),product);
+            //business code
+
             _productDal.Add(product);
             return new SuccessResult(Messages.ProductAdded);
         }

@@ -112,11 +112,21 @@ Program.cs içinde CreateHostBuilder metoduna .UseServiceProviderFactory(new Auto
 	****Autofac'ten vazgeçmek istediðimizde yeni yapýmýzý DependencyResolvers içine kurup Program.cs'te yeni yapýlarýmýzý new'lesek yeterli olacaktýr.
 	
 
-Business (FluentValidation/Manage NuGet)
+BUSINESS (FluentValidation/Manage NuGet)
 Validation/doðrulama ekleyeceðiz  
 ValidationRules/FluentValidation files/ProductValidator class
 Validationlarýmýzý buraya constructor içine yazacaðýz / productManager içinde ise add metodunda karþýlýyoruz
 
-Core
+CORE
 CrossCuttingConcerns/Validation/ValidationTool class
 ProductManager/ Add metodundan validationý al yukarýdaki classa ekle
+
+Utilities/Interceptions/(EnginDemirog github'tan aldýk 3 class var)
+
+	**Burada yazdýðýmýz classlar sayesinde projemizin çalýþma þekli deðiþecek. Yani bizim tüm metodlarýmýzýn çalýþmasýndan önce bu classlardaki metodlar çalýþacak, önceliði belirlenecek, durumlarýna göre try catch yapýlarýna girecek.
+
+Aspect/Autofac/Validation files/(EnginDemirog github'tan)
+
+Business
+DependencyResolvers/Autofac
+	AutofacBusinessModule içine Interceptorsa göre bir yapý ekledik 
