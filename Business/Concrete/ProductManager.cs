@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.CSS;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
@@ -20,22 +21,34 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
+        ILogger _logger;
 
-        public ProductManager(IProductDal productDal)
+        public ProductManager(IProductDal productDal, ILogger logger)
         {
             _productDal = productDal;
+            _logger = logger;
         }
 
-        [ValidationAspect(typeof(ProductValidator))]
+        //[ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
             //Buradaki tüm validation kodlarını önce Business'ta ValidationRules olarak belirleyip Core'da Utilities/Interceptions - CrossCuttingConcerns/Validation - Aspect/Autofac/Validation içlerindeki classlar ile bu klasörleri birbirine bağladık. 
             //Yapmamız gereken tek şey ise methodun üstüne [ValidationAspect] yazmak oldu
 
             //business code
+            _logger.Log();
+            try
+            {
+                _productDal.Add(product);
+                return new SuccessResult(Messages.ProductAdded);
+            }
+            catch (Exception ex)
+            {
 
-            _productDal.Add(product);
-            return new SuccessResult(Messages.ProductAdded);
+                _logger.Log();
+            }
+            return new ErrorResult();
+            
         }
 
         public IDataResult<List<Product>> GetAll()
@@ -50,12 +63,12 @@ namespace Business.Concrete
 
         public IDataResult<List<Product>> GetAllByCategoryId(int id)
         {
-            return new SuccessDataResult<List<Product>>( _productDal.GetAll(p => p.CategoryID == id));
+            return new SuccessDataResult<List<Product>>( _productDal.GetAll(p => p.CategoryId == id));
         }
 
         public IDataResult<Product> GetById(int productId)
         {
-            return new SuccessDataResult<Product>(_productDal.Get(p=>p.ProductID == productId));
+            return new SuccessDataResult<Product>(_productDal.Get(p=>p.ProductId == productId));
         }
 
         public IDataResult<List<Product>> GetByUnitPrice(decimal min, decimal max)

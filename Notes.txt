@@ -1,4 +1,4 @@
---Kütüphaneler
+ï»¿--KÃ¼tÃ¼phaneler
 
 -DataAccess
 -Core(.net core ile ilgisi yok)
@@ -8,125 +8,129 @@ EntityFrameworkCore.SqlServer
 --ADIMLAR
 
 
-Katmanları aç
-Classları belirle
-Katmanlara Abstract ve Concrete klasörlerini aç
+KatmanlarÄ± aÃ§
+ClasslarÄ± belirle
+Katmanlara Abstract ve Concrete klasÃ¶rlerini aÃ§
 
 DataAcces
-Abstract classları aç 
+Abstract classlarÄ± aÃ§ 
 IEntityRepository interfacei miras vermeli (Generic Repository pattern uygula)
 
-Concrete classları aç
+Concrete classlarÄ± aÃ§
 EntityFramework
-Entities classlarını implement et
-Context classını yaz/veritabanı bağlantısını yaz
-Entities classlarında implement edilen metodları doldur
+Entities classlarÄ±nÄ± implement et
+Context classÄ±nÄ± yaz/veritabanÄ± baÄŸlantÄ±sÄ±nÄ± yaz
+Entities classlarÄ±nda implement edilen metodlarÄ± doldur
 
 Business
 Abstract metod ekle
-Concrete classta metodları düzenle
+Concrete classta metodlarÄ± dÃ¼zenle
 
 Core **bu katman referans almaz
-(tüm projelerde kullanabileceğimiz bir alt yapı) (.net core ile bir ilgisi yok) (bu katman ilk başta açılsa daha iyi)
-DataAccess klasörü aç / IEntityRepository classını buraya taşıdık 
-Entities klasörü aç / IEntity classını buraya taşıdık 
-(namespaceleri düzenle, Entities katmanındaki usingleri de düzenle)
-EfEntityRepositoryBase classını EntityFramework klasörüne ekledik
-	Bu class için DataAccess içinde Concrete classlarımızdaki metodları ortak bir çatıda topladık
+(tÃ¼m projelerde kullanabileceÄŸimiz bir alt yapÄ±) (.net core ile bir ilgisi yok) (bu katman ilk baÅŸta aÃ§Ä±lsa daha iyi)
+DataAccess klasÃ¶rÃ¼ aÃ§ / IEntityRepository classÄ±nÄ± buraya taÅŸÄ±dÄ±k 
+Entities klasÃ¶rÃ¼ aÃ§ / IEntity classÄ±nÄ± buraya taÅŸÄ±dÄ±k 
+(namespaceleri dÃ¼zenle, Entities katmanÄ±ndaki usingleri de dÃ¼zenle)
+EfEntityRepositoryBase classÄ±nÄ± EntityFramework klasÃ¶rÃ¼ne ekledik
+	Bu class iÃ§in DataAccess iÃ§inde Concrete classlarÄ±mÄ±zdaki metodlarÄ± ortak bir Ã§atÄ±da topladÄ±k
 
 DataAccess
-Core'dan referans alıyoruz
-Abstract classların usingleri düzenlenmeli
-Concrete classlara Core projesinden EfEntityRepositoryBase mirası veriyoruz. <hangi class için, hangi veritabanına göre>, abstractı kim
+Core'dan referans alÄ±yoruz
+Abstract classlarÄ±n usingleri dÃ¼zenlenmeli
+Concrete classlara Core projesinden EfEntityRepositoryBase mirasÄ± veriyoruz. <hangi class iÃ§in, hangi veritabanÄ±na gÃ¶re>, abstractÄ± kim
 
 Entities
-DTOs klasörü açtık burada T-Sql join gibi operasyonlar için 
-İlgili entityler göre dto classları açıyoruz
-Çıplak class kalmaması için Dto classlarına miras verebilecek Core projesi içinde bir interface IDto classı açtık.
+DTOs klasÃ¶rÃ¼ aÃ§tÄ±k burada T-Sql join gibi operasyonlar iÃ§in 
+Ä°lgili entityler gÃ¶re dto classlarÄ± aÃ§Ä±yoruz
+Ã‡Ä±plak class kalmamasÄ± iÃ§in Dto classlarÄ±na miras verebilecek Core projesi iÃ§inde bir interface IDto classÄ± aÃ§tÄ±k.
 
 DataAccess
-IProductDal içerisine DTO classımıza özel entity classın detaylarını getirecek bir List<ProductDetailDto> GetProductDetails(); metodu yazdık 
-EfProductDal içerisinde ise implement ettik
+IProductDal iÃ§erisine DTO classÄ±mÄ±za Ã¶zel entity classÄ±n detaylarÄ±nÄ± getirecek bir List<ProductDetailDto> GetProductDetails(); metodu yazdÄ±k 
+EfProductDal iÃ§erisinde ise implement ettik
 
 Business
-IProductService içine de aynı methodu yazdık, Manager classında implement ettik
+IProductService iÃ§ine de aynÄ± methodu yazdÄ±k, Manager classÄ±nda implement ettik
 
 Core
-Utilities klasörü aç
-Results klasörü aç(işlem sonuçları için mesaj, başarılı gibi geri bildirimler...)
-IResult interfacei açtık (success, message..) get; readOnly metodları yazdık
-Result classı açtık miras alıp implement ettik. get; readOnly
+Utilities klasÃ¶rÃ¼ aÃ§
+Results klasÃ¶rÃ¼ aÃ§(iÅŸlem sonuÃ§larÄ± iÃ§in mesaj, baÅŸarÄ±lÄ± gibi geri bildirimler...)
+IResult interfacei aÃ§tÄ±k (success, message..) get; readOnly metodlarÄ± yazdÄ±k
+Result classÄ± aÃ§tÄ±k miras alÄ±p implement ettik. get; readOnly
 
 Business
-IResult kullandığımız için Service classında "voidli metodu" IResult'a çevirdik
-Manager classında metodu düzenliyoruz çünkü geriye değer döndürmesi gerekir. 
-Alınan hata için de Result classına mesaj için constructor eklememiz gerekir.
-Aşağıdaki satırdaki Result classlarına göre de metodu düzenle
+IResult kullandÄ±ÄŸÄ±mÄ±z iÃ§in Service classÄ±nda "voidli metodu" IResult'a Ã§evirdik
+Manager classÄ±nda metodu dÃ¼zenliyoruz Ã§Ã¼nkÃ¼ geriye deÄŸer dÃ¶ndÃ¼rmesi gerekir. 
+AlÄ±nan hata iÃ§in de Result classÄ±na mesaj iÃ§in constructor eklememiz gerekir.
+AÅŸaÄŸÄ±daki satÄ±rdaki Result classlarÄ±na gÃ¶re de metodu dÃ¼zenle
 
 Core
-Alınan hata için de Result classına mesaj için constructor eklememiz gerekir.
-Result classından miras alacak SuccessResult ve ErrorResult classlarını aç
+AlÄ±nan hata iÃ§in de Result classÄ±na mesaj iÃ§in constructor eklememiz gerekir.
+Result classÄ±ndan miras alacak SuccessResult ve ErrorResult classlarÄ±nÄ± aÃ§
 
 Business
-Constant(sabitler) klasörü aç (mesajlar,enumlar vs gibi sabitler)
-Messages classı aç (static; class, method)
-Manager classındaki methodlara Mesaj classını ekle
+Constant(sabitler) klasÃ¶rÃ¼ aÃ§ (mesajlar,enumlar vs gibi sabitler)
+Messages classÄ± aÃ§ (static; class, method)
+Manager classÄ±ndaki methodlara Mesaj classÄ±nÄ± ekle
 
-Service classında void olmayan metodlar için List<class> 'dan önce Core\Results klasörüne açtığımız IDataResult interfaceini ekleyerek hem mesaj hem değer döndüreceğiz(IResult'tan miras almalı)
+Service classÄ±nda void olmayan metodlar iÃ§in List<class> 'dan Ã¶nce Core\Results klasÃ¶rÃ¼ne aÃ§tÄ±ÄŸÄ±mÄ±z IDataResult interfaceini ekleyerek hem mesaj hem deÄŸer dÃ¶ndÃ¼receÄŸiz(IResult'tan miras almalÄ±)
 
 Core 
-IDataResult içinde geriye değer döndüren bi yapı kurmak için <T> generic yapı kullanacağız
-DataResult classı açıp implement edip constructor yazıyoruz
-	**Result classı void metodlar için success ve mesaj döndürür
-	**DataResult classı success,message ve data döndürür
+IDataResult iÃ§inde geriye deÄŸer dÃ¶ndÃ¼ren bi yapÄ± kurmak iÃ§in <T> generic yapÄ± kullanacaÄŸÄ±z
+DataResult classÄ± aÃ§Ä±p implement edip constructor yazÄ±yoruz
+	**Result classÄ± void metodlar iÃ§in success ve mesaj dÃ¶ndÃ¼rÃ¼r
+	**DataResult classÄ± success,message ve data dÃ¶ndÃ¼rÃ¼r
 
-Alınan hata için de DataResult classına mesaj için constructor eklememiz gerekir.
-Result classından miras alacak SuccessDataResult ve ErrorDataResult classlarını aç
+AlÄ±nan hata iÃ§in de DataResult classÄ±na mesaj iÃ§in constructor eklememiz gerekir.
+Result classÄ±ndan miras alacak SuccessDataResult ve ErrorDataResult classlarÄ±nÄ± aÃ§
 
 Business
-DataResult için implementleri düzenle
-Manager classındaki methodlara Mesaj classını ekle
+DataResult iÃ§in implementleri dÃ¼zenle
+Manager classÄ±ndaki methodlara Mesaj classÄ±nÄ± ekle
 
 Api 
 New Project/asp.net core web api
-Controller ekle/ProductsController (Apide controller çoğul olarak isimlendirilir)
+Controller ekle/ProductsController (Apide controller Ã§oÄŸul olarak isimlendirilir)
 Action ekle
 
-IoC Container yapısını kur (projemizde new edilen yapı yok configuration olmalı)
-	 Startup.cs içinde ConfigureServices/services.AddSingleton<IProductService,ProductManager>();
+IoC Container yapÄ±sÄ±nÄ± kur (projemizde new edilen yapÄ± yok configuration olmalÄ±)
+	 Startup.cs iÃ§inde ConfigureServices/services.AddSingleton<IProductService,ProductManager>();
 										 services.AddSingleton<IProductDal,EfProductDal>()
-
+										 
 Business
 Autofac-Autofac.Extras.DynamicProxy
-DependencyResolvers klasörü aç
-Autofac klasörü aç
-AutofacBusinessModule classı aç
+DependencyResolvers klasÃ¶rÃ¼ aÃ§
+Autofac klasÃ¶rÃ¼ aÃ§
+AutofacBusinessModule classÄ± aÃ§
 : Module (using Autofac)
 
 WebApi
-Startup.cs içinde AddSingleton'ları yorum satıra aldık. 
-Program.cs içinde CreateHostBuilder metoduna .UseServiceProviderFactory(new AutofacServiceProviderFactory()) ekle
-(IoC yapısı yerine Autofac kullan diyoruz)
-											 .ConfigureContainer<ContainerBuilder> (yazdığımız modülü ekliyoruz)			
+Startup.cs iÃ§inde AddSingleton'larÄ± yorum satÄ±ra aldÄ±k. 
+Program.cs iÃ§inde CreateHostBuilder metoduna .UseServiceProviderFactory(new AutofacServiceProviderFactory()) ekle
+(IoC yapÄ±sÄ± yerine Autofac kullan diyoruz)
+											 .ConfigureContainer<ContainerBuilder> (yazdÄ±ÄŸÄ±mÄ±z modÃ¼lÃ¼ ekliyoruz)			
 
-	****Autofac'ten vazgeçmek istediğimizde yeni yapımızı DependencyResolvers içine kurup Program.cs'te yeni yapılarımızı new'lesek yeterli olacaktır.
+	****Autofac'ten vazgeÃ§mek istediÄŸimizde yeni yapÄ±mÄ±zÄ± DependencyResolvers iÃ§ine kurup Program.cs'te yeni yapÄ±larÄ±mÄ±zÄ± new'lesek yeterli olacaktÄ±r.
 	
 
 BUSINESS (FluentValidation/Manage NuGet)
-Validation/doğrulama ekleyeceğiz  
+Validation/doÄŸrulama ekleyeceÄŸiz  
 ValidationRules/FluentValidation files/ProductValidator class
-Validationlarımızı buraya constructor içine yazacağız / productManager içinde ise add metodunda karşılıyoruz
+ValidationlarÄ±mÄ±zÄ± buraya constructor iÃ§ine yazacaÄŸÄ±z / productManager iÃ§inde ise add metodunda karÅŸÄ±lÄ±yoruz
 
 CORE
 CrossCuttingConcerns/Validation/ValidationTool class
-ProductManager/ Add metodundan validationı al yukarıdaki classa ekle
+ProductManager/ Add metodundan validationÄ± al yukarÄ±daki classa ekle
 
-Utilities/Interceptors/(EnginDemirog github'tan aldık 3 class var)
+Utilities/Interceptors/(EnginDemirog github'tan aldÄ±k 3 class var)
 
-	**Burada yazdığımız classlar sayesinde projemizin çalışma şekli değişecek. Yani bizim tüm metodlarımızın çalışmasından önce bu classlardaki metodlar çalışacak, önceliği belirlenecek, durumlarına göre try catch yapılarına girecek.
+	**Burada yazdÄ±ÄŸÄ±mÄ±z classlar sayesinde projemizin Ã§alÄ±ÅŸma bekli deÄŸiÅŸecek. Yani bizim tÃ¼m metodlarÄ±mÄ±zÄ±n Ã§alÄ±ÅŸmasÄ±ndan Ã¶nce bu classlardaki metodlar Ã§alÄ±ÅŸacak, Ã¶nceliÄŸi belirlenecek, durumlarÄ±na gÃ¶re try catch yapÄ±larÄ±na girecek.
 
 Aspect/Autofac/Validation files/(EnginDemirog github'tan)
 
 Business
 DependencyResolvers/Autofac
-	AutofacBusinessModule içine Interceptorsa göre bir yapı ekledik 
+	AutofacBusinessModule iÃ§ine Interceptorsa gÃ¶re bir yapÄ± ekledik 
+Concrete classlarÄ±mÄ±z iÃ§in (Product/Add metodu validation yorum satÄ±rÄ±)
+CSS/DatabaseLogger,FileLogger,ILogger 
+ProductManager/ILoggerÄ± constructora ekle (Dependency Injection)
+AutofacBusinessModule > builder ekle ILogger, FileLogger

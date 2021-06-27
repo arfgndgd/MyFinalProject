@@ -1,11 +1,13 @@
-
+ï»¿
 AOP -Aspect Oriented Programming
 
-Uygulamamız çalışırken başında sonunda neresinde hata verirse çalışmasını istediğimiz kodlarımız ile aop yöntemi ile çalışır. Bu yönteme interception denir. Aslında yaptığımız try catch bloklarını yazmak zorunda kalmayacağımız bir teknolojidir.
+UygulamamÃ½z Ã§alÃ½Ã¾Ã½rken baÃ¾Ã½nda sonunda neresinde hata verirse Ã§alÃ½Ã¾masÃ½nÃ½ istediÃ°imiz kodlarÃ½mÃ½z ile aop yÃ¶ntemi ile Ã§alÃ½Ã¾Ã½r. Bu yÃ¶nteme interception denir. AslÃ½nda yaptÃ½Ã°Ã½mÃ½z try catch bloklarÃ½nÃ½ yazmak zorunda kalmayacaÃ°Ã½mÃ½z bir teknolojidir.
 
 
 
 Core
 Utilities/Interceptions/Class(EnginDemirog github'tan MethodInterceptionBaseAttribute.cs)
 
-**Burada yazdığımız classlar sayesinde projemizin çalışma şekli değişecek. Yani bizim tüm metodlarımızın çalışmasından önce bu classlardaki metodlar çalışacak, önceliği belirlenecek, durumlarına göre try catch yapılarına girecek.
+**Burada yazdÃ½Ã°Ã½mÃ½z classlar sayesinde projemizin Ã§alÃ½Ã¾ma Ã¾ekli deÃ°iÃ¾ecek. Yani bizim tÃ¼m metodlarÃ½mÃ½zÃ½n Ã§alÃ½Ã¾masÃ½ndan Ã¶nce bu classlardaki metodlar Ã§alÃ½Ã¾acak, Ã¶nceliÃ°i belirlenecek, durumlarÃ½na gÃ¶re try catch yapÃ½larÃ½na girecek.
+
+Loglama: YapÄ±lan operasyonlarÄ±n bir yerde kaydÄ±nÄ± tutmaya denir.

@@ -2,6 +2,7 @@
 using Autofac.Extras.DynamicProxy;
 using Business.Abstract;
 using Business.Concrete;
+using Business.CSS;
 using Castle.DynamicProxy;
 using Core.Utilities.Interceptors;
 using DataAccess.Abstract;
@@ -22,7 +23,7 @@ namespace Business.DependencyResolvers.Autofac
         {
             builder.RegisterType<ProductManager>().As<IProductService>().SingleInstance();
             builder.RegisterType<EfProductDal>().As<IProductDal>().SingleInstance();
-
+            builder.RegisterType<FileLogger>().As<ILogger>().SingleInstance();
 
             //Coredaki Interceptors yapılarına göre yazdık bu kısmı
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();

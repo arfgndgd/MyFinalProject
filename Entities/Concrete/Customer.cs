@@ -10,7 +10,7 @@ namespace Entities.Concrete
     public class Customer:IEntity
     {
         //Northwind veritabanını kulladığımız için standart dışı hareketler var
-        public string CustomerID { get; set; }
+        public string CustomerId { get; set; }
         public string ContactName { get; set; }
         public string CompanyName { get; set; }
         public string City { get; set; }
