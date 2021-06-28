@@ -149,3 +149,20 @@ ProductManager içinde örneğin Category için bir şart bloğu yazacak isek ..
 ICategoryService metodlarına IDataResult olarak düzelttik Manager classında implement ettik
 
 AutofacBusinessModule içinde builder.Category olanları ekledik
+
+Sql Server Object Explorer sekmesinden Users, OperationClaims, UserOperationClaims tablolarını ekledik
+Core/Entities/Concrete/ buraya da classlarını oluşturduk
+
+WebApi
+appsettings.json => TokenOptions
+
+Core
+Utilities yeni klasörler; Encryption,Hashing,JWT
+	Encryption
+		HashingHelper classına kriptolama ile ilgili Create ve Verify metodlarını ekledik
+		SigningCredentialHelper: hashlerken ve doğrularken kullandığımız "HMACSHA512" Cryptography classını kullandığımızı belirtmek için böyle bir class yazdık
+	Hashing	
+		SecurityKeyHelper classında WepApi katmanındaki appsettings.json içine yazdığımız SecurityKey
+	JWT
+		AccessToken
+		ITokenHelper
