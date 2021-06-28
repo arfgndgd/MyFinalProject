@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +20,8 @@ namespace Core.DependencyResolvers
         {
             serviceCollection.AddSingleton<IHttpContextAccessor, HttpContextAccessor>(); //Startup içine ConfigureService içine de yazılabilirdi
             serviceCollection.AddSingleton<ICacheManager, MemoryCacheManager>(); //Core/CrossCuttingConcerns/Caching/Microsoft      "Bir gün Microsoftun kendi Cacheini kullanmayıp farklı bir teknoloji kullanmak istersek sadece ismini vermemiz yeterli"
-            serviceCollection.AddMemoryCache(); 
+            serviceCollection.AddMemoryCache();
+            serviceCollection.AddSingleton<Stopwatch>();
 
         }
     }

@@ -3,6 +3,9 @@ using Business.BusinessAspect.Autofac;
 using Business.Constants;
 using Business.CSS;
 using Business.ValidationRules.FluentValidation;
+using Core.Aspects.Autofac.Caching;
+using Core.Aspects.Autofac.Performance;
+using Core.Aspects.Autofac.Transaction;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Business;
@@ -34,6 +37,8 @@ namespace Business.Concrete
         //Claim
         [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
+        [CacheRemoveAspect("IProductService.Get")]
+        [PerformanceAspect(5)] //sistemde yavaşlama varsa beni uyar
         public IResult Add(Product product)
         {
             //Buradaki tüm validation kodlarını önce Business'ta ValidationRules olarak belirleyip Core'da Utilities/Interceptions - CrossCuttingConcerns/Validation - Aspect/Autofac/Validation içlerindeki classlar ile bu klasörleri birbirine bağladık. 
@@ -50,7 +55,8 @@ namespace Business.Concrete
         }
 
         //Cache 
-        [CacheAspect] //key, value
+        [CacheAspect] //key, value (Core/Aspects/Autofac/Caching/CacheAspect)
+        [PerformanceAspect(5)] //sistemde yavaşlama varsa beni uyar
         public IDataResult<List<Product>> GetAll()
         {
             //İş Kodları
@@ -66,6 +72,9 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Product>>( _productDal.GetAll(p => p.CategoryId == id));
         }
 
+        //Cache 
+        [CacheAspect] //key, value (Core/Aspects/Autofac/Caching/CacheAspect)
+        [PerformanceAspect(5)] //sistemde yavaşlama varsa beni uyar
         public IDataResult<Product> GetById(int productId)
         {
             return new SuccessDataResult<Product>(_productDal.Get(p=>p.ProductId == productId));
@@ -81,6 +90,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProductDetailDto>>(_productDal.GetProductDetails());
         }
 
+        [CacheRemoveAspect("IProductService.Get")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Update(Product product)
         {
@@ -127,6 +137,18 @@ namespace Business.Concrete
             }
             return new SuccessResult();
 
+        }
+
+        [TransactionScopeAspect]
+        public IResult AddTransactionalTest(Product product)
+        {
+            Add(product);
+            if (product.UnitPrice < 10) 
+            {
+                throw new Exception("");
+            }
+            Add(product);
+            return null;
         }
     }
 }

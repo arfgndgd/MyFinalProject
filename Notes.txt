@@ -249,3 +249,29 @@ Core
 
 
 *** Adapter Pattern : Aslında bunların hepsi .Net Core içerisinde var ancak biz bunları kendimize göre uyarlıyoruz
+
+Core
+	Aspect/Autofac/Caching/CacheAspect classı aç Engin Demiroğ Github: NetCoreBackend/Core/Aspects/Autofac/Caching/CacheAspect.cs  (using Microsoft.Extensions.DependencyInjection; .GetService<> için sıkıntı olursa ekle)
+
+ProductManager GetAll ve GetById için [CahceAspect] attributeunu ekle
+
+							******** TEST *************
+Cacheleme yaptığımız için bir ürünü id ile ya da getall actionları ile çağırdığımızda bir kere cache alındığında belirli süre boyunca o ürünleri cacheten verir
+
+Core
+	.Aspects.Autofac.Caching
+		CacheRemoveAspect : Engin Demiroğ Github: NetCoreBackend/Core/Aspects/Autofac/Caching/
+	.Aspects.Autofac.Performance
+		PerformanceAspect
+	.Aspects.Autofac.Transaction
+		TransactionScopeAspect
+
+	DependecyResolvers
+		CoreModule  => serviceCollection.AddSingleton<Stopwatch>();
+
+Business
+	ProductManager => Update actionı, Add actionı
+	        [CacheRemoveAspect("IProductService.Get")]
+			[PerformanceAspect(5)] //sistemde yavaşlama varsa beni uyar
+
+
