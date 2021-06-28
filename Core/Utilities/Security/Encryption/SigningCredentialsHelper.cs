@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Core.Utilities.Security.Encryption
 {
-    public class SigningCredentialHelper //imzalama
+    public class SigningCredentialsHelper //imzalama
     {
         public static SigningCredentials CreateSigningCredentials(SecurityKey securityKey)
         {

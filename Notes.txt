@@ -166,3 +166,52 @@ Utilities yeni klasörler; Encryption,Hashing,JWT
 	JWT
 		AccessToken
 		ITokenHelper
+		JwtHelper => Engin Demiroğ Github/NetCoreBackend/Utilities/Security/Jwt/JwtHelper.cs 
+			System.IdentityModel.Tokens.Jwt, Microsoft.Extensions.Configuration, Microsoft.Extensions.Configuration.Binder
+		Token Options => ""
+		ClaimExtensions => Engin Demiroğ Github/NetCoreBackend/Core/Extensions
+		ClaimsPrincipalExtensions => Engin Demiroğ Github/NetCoreBackend/Core/Extensions
+
+Business 
+	Business.BusinessAspect.Autofac klasörleri aç
+		JWT için
+		SecuredOperation=> Engin Demiroğ Github => NetCoreBackend/Business/BusinessAspects/Autofac/SecuredOperation.cs
+				Microsoft.AspNetCore.Http;
+
+Solution -Nuget => Autofac.Extensions.DependencyInjection for Business 
+Business - Nuget => using Castle.DynamicProxy;
+					using Microsoft.Extensions.DependencyInjection;
+Core
+	Core.Utilities.IoC klasörleri aç
+		ServiceTool => Engin Demiroğ Github => NetCoreBackend/Core/Utilities/IoC/ServiceTool.cs
+
+DataAccess
+	EntityFramework/Abstract
+		IUserDal =>  Engin Demiroğ Github: NetCoreBackend/DataAccess/Abstract/IUserDal.cs /
+	EntityFramework/Abstract
+		EfUserDal => Engin Demiroğ Github: NetCoreBackend/DataAccess/Concrete/EntityFramework/EfUserDal.cs
+
+Business
+	Abstract
+		IUSerService => Engin Demiroğ Github: NetCoreBackend/Business/Abstract/IUserService.cs /
+		IAuthService => Engin Demiroğ Github: NetCoreBackend/Business/Abstract/IAuthService.cs /
+	Concrete
+		UserManager => Engin Demiroğ Github: NetCoreBackend/Business/Concrete/UserManager.cs /
+		AuthManager => Engin Demiroğ Github: NetCoreBackend/Business/Concrete/AuthManager.cs /
+Entities
+	DTOs
+		UserForRegisterDto
+		UserForLoginDto => Engin Demiroğ Github: NetCoreBackend/Entities/Dtos/UserForRegisterDto.cs /
+
+WebApi
+	AuthController => Engin Demiroğ Github:
+
+Business 
+	DependencyResolvers.Autofac.AutofacBusinessModule => builder: user,efuserdal,auth,jwthelper,ITokenHelper
+
+WebApi
+	Startup
+		Configure Service: yukarıda yaptığımız JWT olayını kullanacağımızı belirteceğimiz yer burasıdır(Engin Demiroğ Github)
+		Configure : app.UseAuthentication();
+
+
