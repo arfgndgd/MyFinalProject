@@ -31,6 +31,7 @@ namespace Business.Concrete
             _categoryService = categoryService;
         }
 
+        //Claim
         [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
@@ -48,6 +49,8 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductAdded);           
         }
 
+        //Cache 
+        [CacheAspect] //key, value
         public IDataResult<List<Product>> GetAll()
         {
             //İş Kodları

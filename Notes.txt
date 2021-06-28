@@ -230,4 +230,22 @@ WebApi
 	Ürün ekleyebilmek için ProductManager'ın bu [SecuredOperation("product.add,admin")] sayesinde "Yetkiniz Yok" uyarısı alırız
 		Users tablosundaki Id ile OperationClaims tablosundaki Id'lerin uygun olanlarını alıp UserOperationClaims tablosuna ekledik
 
+Cache sistemi yazacağız 
+Core 
+	CrossCuttingConcerns
+		Caching
+			ICacheManager
+			
+			Microsoft klasörü aç
+				MemoryCacheManager classı ekle :ICacheManager miras al
+					IMemoryCache (using Microsoft.Extensions.Caching.Memory;)				
+				
+	DependencyResolvers
+		CoreModule => serviceCollection.AddMemoryCache();
+					  serviceCollection.AddSingleton<ICacheManager, MemoryCacheManager>();
 
+			MemoryCacheManager implamantasyonu tamamla
+				RemoveByPattern metodu için Engin Demiroğ Github: NetCoreBackend/Core/CrossCuttingConcerns/Caching/Microsoft/MemoryCacheManager.cs 'dan aldık
+
+
+*** Adapter Pattern : Aslında bunların hepsi .Net Core içerisinde var ancak biz bunları kendimize göre uyarlıyoruz
