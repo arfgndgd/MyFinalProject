@@ -211,7 +211,23 @@ Business
 
 WebApi
 	Startup
-		Configure Service: yukarıda yaptığımız JWT olayını kullanacağımızı belirteceğimiz yer burasıdır(Engin Demiroğ Github)
+		ConfigureService: yukarıda yaptığımız JWT olayını kullanacağımızı belirteceğimiz yer burasıdır(Engin Demiroğ Github)
 		Configure : app.UseAuthentication();
+
+Core
+	Core.Utilities.IoC =>ICoreModule classı ekle (Startup içindeki IServiceCollection)
+	DependencyResolvers klasörü aç
+		CoreModule : ICoreModule implement et
+	Extensions
+				(Polymorphism; yarın başka bi modül oluşturursak ICoreModule'de implement edebiliriz)
+		ServiceCollectionExtensions extension metodu yazabilmek iiçin o classın "static" olması lazım
+
+WebApi
+	Startup/ConfigureServices => services.AddDependencyResolvers(); (Core.Extensions / ServiceCollectionExtensions)
+
+
+	****** TEST ******
+	Ürün ekleyebilmek için ProductManager'ın bu [SecuredOperation("product.add,admin")] sayesinde "Yetkiniz Yok" uyarısı alırız
+		Users tablosundaki Id ile OperationClaims tablosundaki Id'lerin uygun olanlarını alıp UserOperationClaims tablosuna ekledik
 
 
