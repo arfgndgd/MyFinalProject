@@ -4,6 +4,7 @@ using Business.CSS;
 using Business.ValidationRules.FluentValidation;
 using Core.Aspects.Autofac.Validation;
 using Core.CrossCuttingConcerns.Validation;
+using Core.Utilities.Business;
 using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
@@ -21,10 +22,12 @@ namespace Business.Concrete
     public class ProductManager : IProductService
     {
         IProductDal _productDal;
+        ICategoryService _categoryService;
 
-        public ProductManager(IProductDal productDal)
+        public ProductManager(IProductDal productDal,ICategoryService categoryService)
         {
             _productDal = productDal;
+            _categoryService = categoryService;
         }
 
         [ValidationAspect(typeof(ProductValidator))]
@@ -34,19 +37,13 @@ namespace Business.Concrete
             //Yapmamız gereken tek şey ise methodun üstüne [ValidationAspect] yazmak oldu
 
             //business code
-            if (CheckIfProductCountOfCategoryCorrect(product.CategoryId).Success)
+            IResult result = BusinessRules.Run(CheckIfProductNameExists(product.ProductName), CheckIfProductCountOfCategoryCorrect(product.CategoryId), CheckIfCategoryLimitExceded());
+            if (result != null)
             {
-                //önce private actinlarin kontrolunu sağlar 
-                if (CheckIfProductNameExists(product.ProductName).Success)
-                {
-                    _productDal.Add(product);
-                    return new SuccessResult(Messages.ProductAdded);
-                }
-                
-            }
-            return new ErrorResult();
-
-            
+                return result;
+            } 
+            _productDal.Add(product);
+            return new SuccessResult(Messages.ProductAdded);           
         }
 
         public IDataResult<List<Product>> GetAll()
@@ -103,11 +100,25 @@ namespace Business.Concrete
 
         private IResult CheckIfProductNameExists(string productName)
         {
+            //Aynı isimde ürün eklenemez
             var result = _productDal.GetAll(p => p.ProductName == productName).Any();
             //Any kullanmadan kullanmak için result == null kullanılabilir
             if (result)
             {
                 return new ErrorResult(Messages.ProductNameAlreadyExists);
+            }
+            return new SuccessResult();
+
+        }
+
+        private IResult CheckIfCategoryLimitExceded()
+        {
+            //Eğer mevcut kategori sayısı 15'i geçtiyse sisteme yeni ürün eklenemez
+            var result = _categoryService.GetAll();
+
+            if (result.Data.Count > 15)
+            {
+                return new ErrorResult(Messages.CategoryLimitExceded);
             }
             return new SuccessResult();
 

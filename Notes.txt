@@ -134,3 +134,18 @@ Concrete classlarımız için (Product/Add metodu validation yorum satırı)
 CSS/DatabaseLogger,FileLogger,ILogger 
 ProductManager/ILoggerı constructora ekle (Dependency Injection)
 AutofacBusinessModule > builder ekle ILogger, FileLogger
+
+ProductManager ILogger silindi
+IProductService Update metodu eklendi
+Private şart blokları eklendi (Add metodu için)
+
+İş Kuralları için bi klasör yapacağız
+Core
+Utilities/Business/BusinessRules
+ProductManager içinde Add metoduna uygun şekilde iş metodu ve onun içine de private şart metodlarını ekliyoruz.
+
+ProductManager içinde örneğin Category için bir şart bloğu yazacak isek ...Dal clası değilde ICategoryService classı tipinde değişken oluşturmak lazım. Bunun nedeni ise IService classları ilgili modelin dışında başka yerlerde kullanılsın diye yaratılır. Farklı bir Dal classını ilgisi olmayan Manager classına yazmak doğru değildir.
+
+ICategoryService metodlarına IDataResult olarak düzelttik Manager classında implement ettik
+
+AutofacBusinessModule içinde builder.Category olanları ekledik
