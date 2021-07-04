@@ -304,3 +304,8 @@ Engin Demiroğ Github: NetCoreBackend/Core/Extensions/ExceptionMiddleware.cs /
 
 Core > Extensions        
 	app.ConfigureCustomExceptionMiddleware(); 
+
+ExceptionMiddliware
+	HandleExceptionAsync => IEnumerable<ValidationFailure> errors;
+
+ErrorDetails => ValidationErrorDetails new property => public IEnumerable<ValidationFailure> Errors { get; set; }
