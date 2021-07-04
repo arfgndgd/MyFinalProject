@@ -50,6 +50,9 @@ namespace WebAPI
             //IproductDal istediðimizde EfProductDal vermeli 
             #endregion
 
+            //CORS injection
+            services.AddCors();
+
             // JWT olayını kullanacağımızı belirteceğimiz yer burasıdır
             var tokenOptions = Configuration.GetSection("TokenOptions").Get<TokenOptions>(); //using Core.Utilities.Security.JWT;
 
@@ -79,6 +82,11 @@ namespace WebAPI
                 app.UseDeveloperExceptionPage();
                 
             }
+
+            app.ConfigureCustomExceptionMiddleware(); //Core > Extensions
+
+            //bu adresten gelen bütün isteklere güveniyorum demektir; birden fazla varsa virgülle ayır
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
 
             app.UseHttpsRedirection();
 

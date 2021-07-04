@@ -275,3 +275,32 @@ Business
 			[PerformanceAspect(5)] //sistemde yavaşlama varsa beni uyar
 
 
+			***** FRONTEND tarafında bi takım işler oldu *******
+CORS hatası: Backendte bu apiye Frontendten ulaşılabilmesi için 
+	gerekli konfigürasyon yapılmamış demektir.
+
+WebAPi
+	Startup
+		ConfigureServices
+		CORS injection ekledik => services.AddCors();
+
+		Configure
+		bu adresten gelen bütün isteklere güveniyorum demektir (frontend)
+		app.UseCors(builder => builder.WithOrigins("http://localhost:4200/").AllowAnyHeader());
+            
+***FrontEndte ürün eklemek istediğimizde aldığımız validation hataları için bir merkezi sistem yazacağız
+*** Aslında controller içinde try catch ile halledilebilir bir durum bu ama böyle bir merkezi sistem olması daha uygundur
+
+Core > Extensions > ErrorDetail, ExceptionMiddliware, ExceptionMiddlewareExtensions classlarını ekle
+
+Engin Demiroğ Github: NetCoreBackend/Core/Extensions/ExceptionMiddleware.cs /
+					  NetCoreBackend/Core/Extensions/ErrorDetails.cs /
+					  NetCoreBackend/Core/Extensions/ExceptionMiddlewareExtensions.cs /
+
+
+	ValidationException => FluentValidation usingi ekle
+
+	***** Middleware aslında bizim Startup classı içindeki Configure metodundaki elle eklediğimiz extra extensionlardır.
+
+Core > Extensions        
+	app.ConfigureCustomExceptionMiddleware(); 
